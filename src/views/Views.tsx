@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from "./Home/Home";
-import AddNewAdvert from "./AddNewAdvert/AddNewAdvert";
+import StudentsList from "./StudentsList/StudentsList";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
-import Adverts from "./Adverts/Adverts";
+import Catalogue from "./Catalogue/Catalogue";
 
 const Views:FC = () => (
     <Switch>
@@ -12,10 +12,13 @@ const Views:FC = () => (
             <Home/>
         </Route>
         <Route path="/adverts">
-            <Adverts/>
+            <Catalogue/>
+        </Route>
+        <Route path='/studentList'>
+            <StudentsList/>
         </Route>
         <Route path = "/new">
-            <AddNewAdvert/>
+            <StudentsList/>
         </Route>
         <Route path = "/login">
             <Login/>

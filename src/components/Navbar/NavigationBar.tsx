@@ -8,14 +8,12 @@ const NavigationBar = () => {
         <div>
             <Navbar expand="lg" variant='dark' className='navbar-style'>
                 <Container>
-                    <Navbar.Brand as={Link} to='/' ><img src={logo} className='navbar-logo'/>Oleix</Navbar.Brand>
+                    <Navbar.Brand as={Link} to='/' ><img src={logo} className='navbar-logo'/>USOS</Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link as={Link} to='/adverts'><b>Adverts</b></Nav.Link>
-                            <Nav.Link as={Link} to='/new'><b>Add new advert</b></Nav.Link>
-                            <Nav.Link as={Link} to='/login'><b>Login</b></Nav.Link>
-                            <Nav.Link as={Link} to='/register'><b>Register</b></Nav.Link>
+                            <Nav.Link as={Link} to='/catalogue'><b>Katalog</b></Nav.Link>
+                            <Nav.Link as={Link} to='/login'><b>Logowanie</b></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
