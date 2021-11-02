@@ -3,6 +3,7 @@ import BootstrapTable, {ColumnDescription, TableChangeState, TableChangeType} fr
 import {Container, Row} from "react-bootstrap";
 import axios from "axios";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import {ChevronDown, ChevronExpand, ChevronUp} from "react-bootstrap-icons";
 
 interface StudentsModel {
     id: number,
@@ -27,7 +28,6 @@ const StudentsList = () => {
                     {
                         params: {
                             page: currentPage,
-                            limit: limit,
                             // sort,
                         }
                     });
@@ -39,39 +39,50 @@ const StudentsList = () => {
         }
         // setTotal(data.length);
         fetchStudents().catch();
-    }, [limit, currentPage, data.length])
+    }, [limit, currentPage])
+
+    const sortHandler = (order?: string) => {
+        if (!order) return <ChevronExpand className='sort-icons-spacing'/>;
+        if (order === 'asc') return <ChevronUp className='sort-icons-spacing'/>;
+        return <ChevronDown className='sort-icons-spacing'/>;
+    }
 
     const columns: ColumnDescription[] = [
         {
             dataField: "id",
             text: 'Id',
+            sort: true,
+            sortCaret: sortHandler,
+            style: {maxWidth: 20}
         },
         {
             dataField: "title",
             text: 'Title',
             sort: true,
+            sortCaret: sortHandler,
+            style: {maxWidth: 150, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}
         },
         {
             dataField: "price",
             text: 'Price',
             sort: true,
+            sortCaret: sortHandler,
+            style: {maxWidth: 30}
         },
         {
             dataField: "category",
             text: 'Category',
             sort: true,
+            sortCaret: sortHandler,
+            style: {maxWidth: 60}
         },
         {
             dataField: "description",
             text: 'Description',
+            style: {maxWidth: 280, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}
         },
     ];
 
-    // const sortHandler = (order?: string) => {
-    //     if (!order) return <ChevronExpand className='sort-icons-spacing'/>;
-    //     if (order === 'asc') return <ChevronUp className='sort-icons-spacing'/>;
-    //     return <ChevronDown className='sort-icons-spacing'/>;
-    // }
 
     const paginate = paginationFactory({
         sizePerPageList: [
@@ -81,19 +92,18 @@ const StudentsList = () => {
             { text: '50', value: 50 }],
         page: currentPage,
         sizePerPage: limit,
-        totalSize: 20,
         hidePageListOnlyOnePage: true,
         hideSizePerPage: !data[0],
     })
 
-    const onTableChange = async (type: TableChangeType, tableChangeState: TableChangeState<object>) => {
-        setCurrentPage(tableChangeState.page);
-        setLimit(tableChangeState.sizePerPage);
-        // setSort(tableChangeState.sortOrder);
-    };
+    // const onTableChange = async (type: TableChangeType, tableChangeState: TableChangeState<object>) => {
+    //     setCurrentPage(tableChangeState.page);
+    //     setLimit(tableChangeState.sizePerPage);
+    //     // setSort(tableChangeState.sortOrder);
+    // };
 
     return (
-            <Container>
+            <Container className='mt-5'>
                 <div>
                     <Row>
                         <BootstrapTable
@@ -102,11 +112,10 @@ const StudentsList = () => {
                             columns={columns}
                             data={data}
                             pagination={paginate}
-                            remote={true}
                             hover
                             bordered={true}
                             striped={true}
-                            onTableChange={onTableChange}/>
+                            />
                     </Row>
                 </div>
             </Container>
