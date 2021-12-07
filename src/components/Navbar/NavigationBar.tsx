@@ -12,7 +12,9 @@ const NavigationBar = () => {
                     <Navbar.Toggle />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
+                            <Nav.Link as={Link} to='/userPanel'><b>Panel użytkownika</b></Nav.Link>
                             <Nav.Link as={Link} to='/catalogue'><b>Katalog</b></Nav.Link>
+                            <Nav.Link as={Link} to='/'><b>Strona domowa</b></Nav.Link>
                             <Nav.Link as={Link} to='/login'><b>Logowanie</b></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

@@ -8,6 +8,8 @@ import Catalogue from "./Catalogue/Catalogue";
 import Workers from './Workers/Workers';
 import Subjects from './Subjects/Subjects';
 import Studies from './Studies/Studies';
+import UserPanel from "./UserPanel/UserPanel";
+import Passes from "./Passes/Passes";
 
 
 const Views:FC = () => (
@@ -38,6 +40,12 @@ const Views:FC = () => (
         </Route>
         <Route path = "/studies">
             <Studies/>
+        </Route>
+        <Route path = '/userPanel'>
+            <UserPanel/>
+        </Route>
+        <Route path='/passes'>
+            <Passes/>
         </Route>
     </Switch>
 );
