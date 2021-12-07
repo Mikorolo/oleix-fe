@@ -11,7 +11,7 @@ const Views:FC = () => (
         <Route exact path="/">
             <Home/>
         </Route>
-        <Route path="/adverts">
+        <Route path="/catalogue">
             <Catalogue/>
         </Route>
         <Route path='/studentList'>

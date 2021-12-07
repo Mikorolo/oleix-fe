@@ -6,4 +6,15 @@
   button {
     color: white !important;
   }
-}s
+}
+
+.card-body-style {
+  background-color: #EDE6E6;
+  border-radius: 20px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.page-item.active .page-link {
+  background-color: #B02A37 !important;
+  border-color: #B02A37 !important;
+}

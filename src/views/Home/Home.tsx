@@ -1,60 +1,49 @@
-import React from 'react';
-import {Button, Carousel} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Card, Container, Pagination} from "react-bootstrap";
 
 const Home = () => {
-    return (
+    const [currentPage, setCurrentPage] = useState(1)
+    const [limit, setLimit] = useState(5);
+    let items = [];
+    for (let number = 1; number <= 5; number++) {
+        items.push(
+            <Pagination.Item className='pagination-buttons' onClick={() => setCurrentPage(number)} key={number} active={number === currentPage}>
+                {number}
+            </Pagination.Item>,
+        );
+    }
+
+    const paginationBasic = (
         <div>
-          <h2 className='mt-3 d-flex justify-content-center'>Witaj w systemie USOS Politechniki Świętokrzyskiej</h2>
-            <Carousel className='mt-3' variant='dark'>
-                <Carousel.Item>
-                    <img
-                        className="d-block justify-content-center mx-auto"
-                        src="https://nowymarketing.pl/i/articles/19609_l2.jpg"
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3 className='text-white'>Lista studentów</h3>
-                        <Button className='fw-bold'>Przejdź do</Button>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block justify-content-center mx-auto"
-                        src="https://gfx.dlastudenta.pl/photos/birger-kollmeier-910261_960_720_600xauto.jpg"
-                        alt="Second slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3 className='text-white'>Lista prowadzących</h3>
-                        <Button className='fw-bold'>Przejdź do</Button>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block justify-content-center mx-auto"
-                        src="https://cdn.galleries.smcloud.net/t/galleries/gf-LhWQ-2YTw-aU2C_rodzina-500-plus-gdzie-zlozyc-wniosek-w-rzeszowie-nabor-wnioskow-rusza-juz-w-lutym-664x442.jpg"
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3 className='text-white'>Wnioski</h3>
-                        <Button className='fw-bold'>Przejdź do</Button>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block justify-content-center mx-auto"
-                        src="https://www.intersoft.pl/gfx/szkolenia_top_855.png"
-                        alt="Fourth slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3 className='text-white'>Zarządzaj grupami</h3>
-                        <Button className='fw-bold'>Przejdź do</Button>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+            <Pagination>{items}</Pagination>
         </div>
+    );
+
+    return (
+        <Container>
+          <h2 className='mt-3 mb-5 d-flex justify-content-center'>Witaj w systemie USOS Politechniki Świętokrzyskiej</h2>
+            <Card className='mt-3 mb-3 w-75 d-flex justify-content-center m-auto border-0'>
+                <Card.Body className='card-body-style'>
+                    <Card.Title>Lorem ipsum</Card.Title>
+                    <Card.Text>Lorem ipsum</Card.Text>
+                    <Card.Text className='d-flex justify-content-end'>Dnia 07.12.2021</Card.Text>
+                    <Card.Text>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis aliquam elit ac congue.
+                        In id risus vitae neque laoreet mollis eget non orci. Cras enim est, luctus nec eros id,
+                        elementum gravida nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada
+                        fames ac turpis egestas. Pellentesque eleifend eleifend ex ac euismod. Nam quis tellus volutpat,
+                        lacinia mi vitae, mattis orci. Integer ac pretium leo. Curabitur sed laoreet nunc. Etiam mollis felis
+                        nec tristique bibendum. Nunc nec porttitor nisi, quis rhoncus magna. Donec ultrices nisl ac ultrices
+                        eleifend. Nullam malesuada lacus eget risus luctus aliquam.
+                    </Card.Text>
+                    <Pagination className='d-flex justify-content-end'>
+                        <Pagination.Prev onClick={() => currentPage > 1 ? setCurrentPage(currentPage - 1) : setCurrentPage(currentPage)} />
+                        {paginationBasic}
+                        <Pagination.Next onClick={() => currentPage < limit ? setCurrentPage(currentPage + 1) : setCurrentPage(currentPage)} />
+                    </Pagination>
+                </Card.Body>
+            </Card>
+        </Container>
     );
 };
 
