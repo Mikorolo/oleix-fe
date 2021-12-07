@@ -24,7 +24,7 @@ const Catalogue = () => {
                         <Figure.Caption className='d-flex justify-content-center text-dark m-auto'>
                             <Col>
                                 <Row>
-                                    <h4 onClick={() => handleRoute('workers')}><b>Pracownicy</b></h4>
+                                    <h4 className = "catalogue-caption" onClick={() => handleRoute('workers')}><b>Pracownicy</b></h4>
                                 </Row>
                                 <Row>
                                     <h6>Informacje o pracownikach</h6>
@@ -43,7 +43,7 @@ const Catalogue = () => {
                         <Figure.Caption className='d-flex justify-content-center text-dark m-auto'>
                             <Col>
                                 <Row>
-                                    <h4 onClick={() => handleRoute('subjects')}><b>Przedmioty</b></h4>
+                                    <h4 className = "catalogue-caption" onClick={() => handleRoute('subjects')}><b>Przedmioty</b></h4>
                                 </Row>
                                 <Row>
                                     <h6>Informacje o przedmiotach</h6>
@@ -62,7 +62,7 @@ const Catalogue = () => {
                         <Figure.Caption className='d-flex justify-content-center text-dark m-auto'>
                             <Col>
                                 <Row>
-                                    <h4 onClick={() => handleRoute('studies')}><b>Studia</b></h4>
+                                    <h4 className = "catalogue-caption" onClick={() => handleRoute('studies')}><b>Studia</b></h4>
                                 </Row>
                                 <Row>
                                     <h6>Informacje o kierunkach studiów</h6>
