@@ -1,16 +1,17 @@
 import { Formik, FormikHelpers} from 'formik';
-import React from 'react';
-import {Button, Col, Container, Form, FormLabel, Image, Row} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Button, Col, Container, Form, FormLabel, Image, Row, Toast} from 'react-bootstrap';
 import loginPageLogo from '../../assets/img/loginPageLogo.png';
 import {useHistory} from "react-router-dom";
 
-interface LoginModel {
+interface ForgotPasswordModel {
     email: string;
-    password: string;
+    pesel: string;
 }
 
-const Login = () => {
+const ForgotPassword = () => {
     const history = useHistory();
+    const [show, setShow] = useState(false);
     return (
         <div>
             <Image src={loginPageLogo} className='d-flex mx-auto' />
@@ -19,11 +20,11 @@ const Login = () => {
                     <Formik
                         initialValues={{
                             email: '',
-                            password: '',
+                            pesel: '',
                         }}
                         onSubmit={(
-                            values: LoginModel,
-                            { setSubmitting }: FormikHelpers<LoginModel>
+                            values: ForgotPasswordModel,
+                            { setSubmitting }: FormikHelpers<ForgotPasswordModel>
                         ) => {
                             setTimeout(() => {
                                 alert(JSON.stringify(values, null, 2));
@@ -43,27 +44,35 @@ const Login = () => {
                                 />
                             </Col>
                             <Col sm={6} lg={4} className='m-auto mt-3'>
-                                <FormLabel htmlFor="password" className='fw-bold'>Hasło:</FormLabel>
+                                <FormLabel htmlFor="pesel" className='fw-bold'>PESEL:</FormLabel>
                                 <Form.Control
-                                    id="password"
-                                    name="password"
-                                    placeholder="Podaj hasło"
-                                    type="password"
+                                    id="pesel"
+                                    name="pesel"
+                                    placeholder="Podaj pesel"
+                                    type="text"
                                     className='login-input'
                                 />
                             </Col>
                             <Col className='justify-content-center d-flex'>
-                                <Button type="submit" variant='warning' className='mt-3 fw-bold text-black'>Zaloguj</Button>
-                            </Col>
-                            <Col className='justify-content-center d-flex'>
-                                <Button variant='link' className='forgot-password-text' onClick={() => history.push('/forgotPassword')}>Nie pamiętam hasła</Button>
+                                <Button type="button" variant='warning' className='mt-3 fw-bold text-black' onClick={() => {setShow(true);}}>Zresetuj hasło</Button>
                             </Col>
                         </Form>
                     </Formik>
                 </Row>
+                <Toast onClose={() => {setShow(false); history.push('/login')}} show={show} delay={3000} autohide className='login-toast'>
+                    <Toast.Header>
+                        <img
+                            src=""
+                            className="rounded"
+                            alt=""
+                        />
+                        <strong className="me-auto">Reset hasła</strong>
+                    </Toast.Header>
+                    <Toast.Body>Hasło zostało zresetowane pomyślnie</Toast.Body>
+                </Toast>
             </Container>
         </div>
     );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Card, Container, Pagination} from "react-bootstrap";
+import {Card, Container, Image, Pagination } from "react-bootstrap";
+import politechnika from "../../assets/img/politechnika.jpg"
 
 const Home = () => {
     const [currentPage, setCurrentPage] = useState(1)
@@ -21,8 +22,11 @@ const Home = () => {
 
     return (
         <Container>
-          <h2 className='mt-3 mb-5 d-flex justify-content-center'>Witaj w systemie USOS Politechniki Świętokrzyskiej</h2>
-            <Card className='mt-3 mb-3 w-75 d-flex justify-content-center m-auto border-0'>
+            <Image src={politechnika} className='home-image'/>
+                <div className='slide-right'>
+                    <h2 className='mt-3 mb-5 d-flex justify-content-center home-header'>Witaj w systemie USOS Politechniki Świętokrzyskiej</h2>
+                </div>
+            <Card className='mt-2 mb-3 w-75 d-flex justify-content-center m-auto border-0 fade-in-image card-style'>
                 <Card.Body className='card-body-style'>
                     <Card.Title>Lorem ipsum</Card.Title>
                     <Card.Text>Lorem ipsum</Card.Text>

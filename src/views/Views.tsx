@@ -10,6 +10,10 @@ import Subjects from './Subjects/Subjects';
 import Studies from './Studies/Studies';
 import UserPanel from "./UserPanel/UserPanel";
 import Passes from "./Passes/Passes";
+import Stages from "./Stages/Stages";
+import ForgotPassword from "./Login/ForgotPassword";
+import Polls from "./Polls/Polls";
+import Grades from "./Grades/Grades";
 
 
 const Views:FC = () => (
@@ -46,6 +50,18 @@ const Views:FC = () => (
         </Route>
         <Route path='/passes'>
             <Passes/>
+        </Route>
+        <Route path='/stages'>
+            <Stages/>
+        </Route>
+        <Route path='/forgotPassword'>
+            <ForgotPassword/>
+        </Route>
+        <Route path='/polls'>
+            <Polls/>
+        </Route>
+        <Route path='/grades'>
+            <Grades/>
         </Route>
     </Switch>
 );
