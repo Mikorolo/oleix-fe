@@ -1,0 +1,21 @@
+.subject-name:hover {
+    text-decoration: underline cornflowerblue;
+    color: cornflowerblue !important;
+}
+
+.accordion-header {
+  .accordion-button, .accordion-button-collapsed {
+    background-color: #474747;
+    color: white;
+  }
+}
+
+.grades-info-card {
+  .card-body {
+    background-color: lightgray;
+    opacity: 0.8;
+    font-size: 15px;
+  }
+  backdrop-filter: blur(5px);
+  width: 40%;
+}

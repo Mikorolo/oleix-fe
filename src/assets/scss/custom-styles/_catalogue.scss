@@ -1,5 +1,16 @@
 .catalogue-caption {
     :hover {
-        color: rgba(19, 22, 182, 0.705);
+        color: rgb(130, 169, 245);
     }
+  text-shadow: 2px 2px #282c34;
+}
+
+.catalogue-figure:hover {
+        transform: scale(1.1);
+}
+
+.catalogue-menu {
+  display: flex;
+  align-items: center;
+  margin-top: 25vh;
 }

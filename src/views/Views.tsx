@@ -14,6 +14,7 @@ import Stages from "./Stages/Stages";
 import ForgotPassword from "./Login/ForgotPassword";
 import Polls from "./Polls/Polls";
 import Grades from "./Grades/Grades";
+import FillPoll from "./Polls/FillPoll/FillPoll";
 
 
 const Views:FC = () => (
@@ -57,11 +58,14 @@ const Views:FC = () => (
         <Route path='/forgotPassword'>
             <ForgotPassword/>
         </Route>
-        <Route path='/polls'>
+        <Route exact path='/polls'>
             <Polls/>
         </Route>
         <Route path='/grades'>
             <Grades/>
+        </Route>
+        <Route path="/polls/fillPoll">
+            <FillPoll/>
         </Route>
     </Switch>
 );

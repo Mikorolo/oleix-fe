@@ -2,3 +2,106 @@
   background-color: #EDE6E6 !important;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+.user-panel-menu {
+  display: flex;
+  align-items: center;
+  margin-top: 25vh;
+}
+
+.user-panel-figures {
+  width: auto;
+  height: 110%;
+}
+
+.user-panel-bg {
+  position: fixed;
+  object-fit: fill;
+  height: 107%;
+  z-index: -1;
+  animation: fadeIn 4s;
+  -webkit-animation: fadeIn 4s;
+  -moz-animation: fadeIn 4s;
+  -o-animation: fadeIn 4s;
+  -ms-animation: fadeIn 4s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.slide-right {
+  width: 100%;
+  overflow: hidden;
+  margin-left: 300px;
+  max-width: 500px
+}
+
+.slide-right h4 {
+  animation: 2s slide-right 0s forwards;
+  transform:translateX(-100%);
+}
+
+@keyframes slide-right {
+  to {
+    transform:translateX(0);
+  }
+}
+
+.slide-left {
+  width: 100%;
+  overflow: hidden;
+  margin-left: 300px;
+  max-width: 500px;
+}
+
+.slide-left h4 {
+  animation: 2s slide-right 0s forwards;
+  transform:translateX(100%);
+}
+
+@keyframes slide-left {
+  to {
+    transform:translateX(0);
+  }
+}
+
+.slide-up img {
+  height: 100%;
+  overflow-y: hidden !important;
+  max-height: 200px;
+  margin-top: 100%;
+  animation: 1s slide-up 0s forwards;
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 100%;
+  }
+
+  to {
+    margin-top: 0%;
+  }
+}

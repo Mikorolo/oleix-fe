@@ -1,0 +1,59 @@
+.subjects-background {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  object-fit: fill;
+  z-index: -1;
+  animation: fadeIn 4s;
+  -webkit-animation: fadeIn 4s;
+  -moz-animation: fadeIn 4s;
+  -o-animation: fadeIn 4s;
+  -ms-animation: fadeIn 4s;
+}
+
+.hints-style {
+  background-color: #49494c;
+  opacity: 0.85;
+  border-radius: 4px;
+  box-shadow: #282c34 2px 2px;
+}
+
+.hint-text {
+  display: flex;
+  align-items: center;
+}
+
+.search-button-position {
+  bottom: 14px;
+  display: block;
+  position: relative;
+  left: 4px;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}

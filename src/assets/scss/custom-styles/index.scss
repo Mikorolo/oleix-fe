@@ -4,3 +4,12 @@
 @import "home";
 @import "catalogue";
 @import "user-panel";
+@import "subjects";
+@import "polls";
+@import "grades";
+@import "stages";
+
+body {
+  background-image: linear-gradient(to right, lightblue, transparent);
+  //overflow: hidden;
+}

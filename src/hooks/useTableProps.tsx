@@ -5,6 +5,11 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory from "react-bootstrap-table2-filter";
 import axios from "axios";
 
+export const sortHandler = (order?: string) => {
+    if (!order) return <ChevronExpand className='sort-icons-spacing'/>;
+    if (order === 'asc') return <ChevronUp className='sort-icons-spacing'/>;
+    return <ChevronDown className='sort-icons-spacing'/>;
+}
 
 const useTableProps = <T extends {}>(url: string) => {
     const [data, setData] = useState<T[]>([]);
@@ -45,18 +50,14 @@ const useTableProps = <T extends {}>(url: string) => {
         };
         fetchData().catch();
     }, [currentPage, limit, sortBy, sortDir, url]);
-    const sortHandler = (order?: string) => {
-        if (!order) return <ChevronExpand className='sort-icons-spacing'/>;
-        if (order === 'asc') return <ChevronUp className='sort-icons-spacing'/>;
-        return <ChevronDown className='sort-icons-spacing'/>;
-    }
+
 
     const paginate = paginationFactory({
         sizePerPageList: [
+            { text: '5', value: 5 },
             { text: '10', value: 10 },
             { text: '25', value: 25 },
-            { text: '50', value: 50 },
-            { text: '100', value: 100 }],
+            { text: '50', value: 50 }],
         page: currentPage,
         sizePerPage: limit,
         totalSize: total,
