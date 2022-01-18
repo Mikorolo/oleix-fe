@@ -64,7 +64,7 @@ const Views:FC = () => (
         <Route path='/grades'>
             <Grades/>
         </Route>
-        <Route path="/polls/fillPoll">
+        <Route path="/polls/fillPoll/:lecturerId">
             <FillPoll/>
         </Route>
     </Switch>

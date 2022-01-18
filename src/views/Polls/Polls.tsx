@@ -5,14 +5,10 @@ import axios from "axios";
 import {useHistory} from "react-router-dom";
 
 interface PollsModelItem {
-    lecturerName: string;
-    note: string;
-    rating: number;
-}
-
-interface PollsModel {
-    list: PollsModelItem[];
-    totalCount: number;
+    lecturerId: string;
+    firstName: string;
+    surname: string;
+    email: number;
 }
 
 const Polls = () => {
@@ -22,7 +18,7 @@ const Polls = () => {
     useEffect(() => {
         const fetchPolls = async() => {
             try {
-                const res = await axios.get('https://localhost:44362/api/questionnaries');
+                const res = await axios.get('https://localhost:44362/api/lecturers');
                 setData(res.data.list);
             }
             catch (e) {
@@ -30,7 +26,7 @@ const Polls = () => {
             }
         }
         fetchPolls().catch();
-    })
+    },[])
     return (
         <Container>
             <h2 className='mt-4 mb-3'>Ankiety do wypełnienia:</h2>
@@ -69,8 +65,8 @@ const Polls = () => {
                     {data.map((item) => (
                         <tr>
                             <td><Image className='profile-picture' src={profilePicture}/></td>
-                            <td>Projektowanie aplikacji internetowych 1 (Laboratorium) <br/> {item.lecturerName}</td>
-                            <td><Button variant='success' className='d-flex m-auto' onClick={() => history.push("/polls/fillPoll")}>Wypełnij ankietę</Button></td>
+                            <td>{item.firstName} <br/> {item.email}</td>
+                            <td><Button variant='success' className='d-flex m-auto' onClick={() => history.push(`/polls/fillPoll/${item.lecturerId}`)}>Wypełnij ankietę</Button></td>
                         </tr>
                     ))}
                     </tbody>
