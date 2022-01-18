@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import workers from "../../assets/img/pracownicy.png";
 import subjects from "../../assets/img/przedmioty.png";
 import studies from "../../assets/img/studia.png";
+import studentsIcon from "../../assets/img/studenci.png";
 import Gradient from "../../components/Gradient/Gradient";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import userPanelBg from "../../assets/img/userPanelBg.jpg";
@@ -77,6 +78,27 @@ const Catalogue = () => {
                                 </Row>
                                 <Row>
                                     <h6 className='text-white catalogue-caption'>Informacje o kierunkach studiów</h6>
+                                </Row>
+                            </Col>
+                        </Figure.Caption>
+                    </Figure>
+                </Col>
+                <Col className='mx-5'>
+                    <Figure className='slide-up'>
+                        <Figure.Image
+                            width={171}
+                            height={180}
+                            src={studentsIcon}
+                            className='catalogue-figure'
+                            onClick={() => handleRoute('studentList')}
+                        />
+                        <Figure.Caption className='d-flex justify-content-center text-white m-auto slide-right'>
+                            <Col>
+                                <Row>
+                                    <h4 className = "catalogue-caption ms-5" onClick={() => handleRoute('studentList')}><b>Studenci</b></h4>
+                                </Row>
+                                <Row>
+                                    <h6 className='text-white catalogue-caption'>Lista studiujących</h6>
                                 </Row>
                             </Col>
                         </Figure.Caption>

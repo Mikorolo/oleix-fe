@@ -27,7 +27,7 @@ const FillPoll = () => {
         }
 
         const initialValues : PollModelItem = {
-            studentId: '2a470eba-6dba-11ec-90d6-0242ac120003',
+            studentId: '85664330-8b99-49d4-91e4-ea3d63287bb9',
             lecturerId: lecturerId,
             note: '',
             rating: 0,
@@ -43,6 +43,7 @@ const FillPoll = () => {
                         <Form noValidate>
                             <Col className='mb-3 m-auto' sm={6} lg={4}>
                                 <TextInput
+                                    as = 'textarea'
                                     name='note'
                                     label='Uwagi:'
                                     required
@@ -51,6 +52,7 @@ const FillPoll = () => {
                             <Col sm={6} lg={4} className='m-auto mt-3'>
                                 <TextInput
                                     name='rating'
+                                    type='number'
                                     label='Ocena'
                                     required
                                 />

@@ -7,13 +7,15 @@ interface TextInputProps extends FormControlProps {
     label?: string;
     required?: boolean;
     rows?: number;
+    type?: string;
     maxLength?: number;
+    as?: any;
     onChange?: (e: any) => void;
     readOnly?: boolean;
     disabled?: boolean;
 }
 
-const TextInput: FC<TextInputProps> = ({ label, disabled, required, onChange, readOnly, ...props }) => {
+const TextInput: FC<TextInputProps> = ({ label, type, as, disabled, required, onChange, readOnly, ...props }) => {
     const [field, meta] = useField(props);
 
     const handleChange = (e: any) => {
@@ -32,6 +34,8 @@ const TextInput: FC<TextInputProps> = ({ label, disabled, required, onChange, re
                     <Form.Control
                         {...field}
                         {...props}
+                        as = {as}
+                        type = {type}
                         disabled={disabled}
                         className={`bg-white ${changeColorWhenDisabled}`}
                         onChange={handleChange}
