@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import {Container, Table, Button, Toast, Pagination, Row} from "react-bootstrap";
+import React from "react"
+import {Container, Row} from "react-bootstrap";
 import useTableProps, {sortHandler} from "../../hooks/useTableProps";
 import BootstrapTable, {ColumnDescription} from "react-bootstrap-table-next";
 
@@ -19,11 +19,6 @@ const Workers = () => {
     const { data, tableProps } = useTableProps<WorkersModel>('https://localhost:44362/api/lecturers');
 
     const columns: ColumnDescription[] = [
-        {
-            dataField: "lecturerId",
-            text: 'Lecturer ID',
-            style: {maxWidth: 50}
-        },
         {
             dataField: "firstName",
             text: 'First Name',

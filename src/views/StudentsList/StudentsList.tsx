@@ -22,14 +22,9 @@ const StudentsList = () => {
 
     const columns: ColumnDescription[] = [
         {
-            dataField: "studentId",
-            text: 'Id',
-            style: {maxWidth: 100}
-        },
-        {
-            dataField: "groupId",
-            text: 'Group Id',
-            style: {maxWidth: 150, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}
+            dataField: "groupName",
+            text: 'Group',
+            style: {maxWidth: 100, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap"}
         },
         {
             dataField: "firstName",

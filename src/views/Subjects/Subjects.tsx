@@ -1,16 +1,45 @@
-import React from "react"
-import {Button, Col, Container, Form, FormLabel, Image, Placeholder, Row} from "react-bootstrap";
+import React, {useEffect, useState} from "react"
+import {
+    Button,
+    Col,
+    Container,
+    Form,
+    FormLabel,
+    Image,
+    ListGroup,
+    ListGroupItem,
+    Row
+} from "react-bootstrap";
 import SideMenu from "../../components/SideMenu/SideMenu";
-import {Formik, FormikHelpers} from "formik";
+import {Formik} from "formik";
 import subjectsBackgorund from '../../assets/img/subjectsBackground.png';
+import axios from "axios";
 
-interface SubjectsModel {
-    search: string,
-    catalogue: string,
-    group: string,
+interface SubjectsInterface {
+    id: string;
+    name: string;
 }
 
 const Subjects = () => {
+    const [data, setData] = useState<SubjectsInterface[]>([]);
+    const [subjectPhrase, setSubjectPhrase] = useState('');
+    
+    useEffect(() => {
+        const fetchSubjects = async() => {
+            try {
+                const res = await axios.get('https://localhost:44362/api/dictionaries/subjects', {
+                    params: {
+                        phrase: subjectPhrase
+                    }
+                });
+                setData(res.data.list);
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }
+        fetchSubjects().catch();
+    },[subjectPhrase])
     
     return (
         <Container>
@@ -20,31 +49,27 @@ const Subjects = () => {
             <Row>
                 <Formik
                     initialValues={{
-                        search: '',
-                        catalogue: '',
-                        group: ''
+                        subjectPhrase: '',
+                        coursePhrase: '',
+                        groupPhrase: '',
                     }}
-                    onSubmit={(
-                        values: SubjectsModel,
-                        { setSubmitting }: FormikHelpers<SubjectsModel>
-                    ) => {
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
-                        }, 500);
+                    onSubmit={(values, {setSubmitting}) => {
+                        setSubjectPhrase(values.subjectPhrase);
+                        setSubmitting(false);
                     }}
                 >
-                    <Form>
+                    <Form onSubmit={(e) => e.preventDefault()}>
                         <Col className='mb-3 m-auto' sm={6} lg={4}>
                             <FormLabel htmlFor="search" className='fw-bold text-white'>Wyszukiwarka przedmiotów:</FormLabel>
                             <Row>
                                 <Col className='w-100 d-flex '>
                                     <Form.Control
-                                        id="search"
-                                        name="search"
+                                        id="subjectPhrase"
+                                        name="subjectPhrase"
                                         placeholder="Wprowadź słowo kluczowe"
                                         type="text"
                                         className='login-input'
+                                        onChange={(e) => { setSubjectPhrase(e.target.value);}}
                                     />
                                 </Col>
                                 <Row className='d-flex w-25 justify-content-end search-button-position'>
@@ -75,6 +100,15 @@ const Subjects = () => {
                         </Col>
                     </Form>
                 </Formik>
+                <Col className='mt-4 justify-content-center d-flex'>
+                    {subjectPhrase.length > 1 ? data.map((item) => (
+                        <ListGroup>
+                            <ListGroupItem action className='mx-1'>
+                                {item.name}
+                            </ListGroupItem>
+                        </ListGroup>
+                    )) : null}
+                </Col>
             </Row>
         </Container>
     );

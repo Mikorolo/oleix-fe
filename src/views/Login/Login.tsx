@@ -1,8 +1,11 @@
-import { Formik, FormikHelpers} from 'formik';
+import { Formik, Form} from 'formik';
 import React from 'react';
-import {Button, Col, Container, Form, FormLabel, Image, Row} from 'react-bootstrap';
+import {Button, Col, Container, Image, Row} from 'react-bootstrap';
 import loginPageLogo from '../../assets/img/loginPageLogo.png';
 import {useHistory} from "react-router-dom";
+import Axios from "axios";
+import TextInput from "../../components/TextInput/TextInput";
+import {useCurrentUser} from "../../contexts/UserContext";
 
 interface LoginModel {
     email: string;
@@ -11,6 +14,22 @@ interface LoginModel {
 
 const Login = () => {
     const history = useHistory();
+    const { setIsAuthenticated } = useCurrentUser();
+
+    const handleLogin = async (values: LoginModel) => {
+        try {
+            const data = await Axios.post<any>("https://localhost:44362/api/auth/login", values, {withCredentials: true});
+            console.log(values)
+            if (data.status === 200) {
+                setIsAuthenticated(true);
+                history.push('/');
+            }
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
     return (
         <div>
             <Image src={loginPageLogo} className='d-flex mx-auto' />
@@ -21,43 +40,30 @@ const Login = () => {
                             email: '',
                             password: '',
                         }}
-                        onSubmit={(
-                            values: LoginModel,
-                            { setSubmitting }: FormikHelpers<LoginModel>
-                        ) => {
-                            setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
-                                setSubmitting(false);
-                            }, 500);
-                        }}
+                        onSubmit={handleLogin}
                     >
                         <Form>
                             <Col className='mb-3 m-auto' sm={6} lg={4}>
-                                <FormLabel htmlFor="email" className='fw-bold'>Email:</FormLabel>
-                                <Form.Control
-                                    id="email"
-                                    name="email"
-                                    placeholder="Wprowadź adres e-mail"
-                                    type="email"
-                                    className='login-input'
+                                <TextInput
+                                    name='email'
+                                    label='E-mail:'
+                                    required
                                 />
                             </Col>
                             <Col sm={6} lg={4} className='m-auto mt-3'>
-                                <FormLabel htmlFor="password" className='fw-bold'>Hasło:</FormLabel>
-                                <Form.Control
-                                    id="password"
-                                    name="password"
-                                    placeholder="Podaj hasło"
+                                <TextInput
+                                    name='password'
+                                    label='Hasło:'
+                                    required
                                     type="password"
-                                    className='login-input'
                                 />
                             </Col>
                             <Col className='justify-content-center d-flex'>
                                 <Button type="submit" variant='warning' className='mt-3 fw-bold text-black'>Zaloguj</Button>
                             </Col>
-                            <Col className='justify-content-center d-flex'>
-                                <Button variant='link' className='forgot-password-text' onClick={() => history.push('/forgotPassword')}>Nie pamiętam hasła</Button>
-                            </Col>
+                            {/*<Col className='justify-content-center d-flex'>*/}
+                            {/*    <Button variant='link' className='forgot-password-text' onClick={() => history.push('/forgotPassword')}>Nie pamiętam hasła</Button>*/}
+                            {/*</Col>*/}
                         </Form>
                     </Formik>
                 </Row>

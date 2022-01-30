@@ -27,7 +27,7 @@ const FillPoll = () => {
         }
 
         const initialValues : PollModelItem = {
-            studentId: '85664330-8b99-49d4-91e4-ea3d63287bb9',
+            studentId: '2a471112-6dba-11ec-90d6-0242ac120003',
             lecturerId: lecturerId,
             note: '',
             rating: 0,

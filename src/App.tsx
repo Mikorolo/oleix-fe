@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
-import NavigationBar from "./components/Navbar/NavigationBar";
-import Views from "./views/Views";
-import {BrowserRouter} from "react-router-dom";
+import {useCurrentUser} from "./contexts/UserContext";
+import Authorized from "./Authorized";
+import Unauthorized from "./Unauthorized";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <NavigationBar/>
-      <Views/>
-    </BrowserRouter>
-  );
+const App = () => {
+  const {isAuthenticated} = useCurrentUser();
+
+  if(isAuthenticated) {
+      return (<Authorized/>)
+  }
+  else {
+      return (<Unauthorized/>)
+  }
 }
 
 export default App;
