@@ -2,6 +2,7 @@ import React from 'react';
 import BootstrapTable, {ColumnDescription} from "react-bootstrap-table-next";
 import {Container, Row} from "react-bootstrap";
 import useTableProps, {sortHandler} from "../../hooks/useTableProps";
+import {url} from "../../consts/url";
 
 interface StudentsModel {
     studentId: string,
@@ -18,7 +19,7 @@ interface StudentsListItem {
 }
 
 const StudentsList = () => {
-    const { data, tableProps } = useTableProps<StudentsListItem>('https://localhost:44362/api/students');
+    const { data, tableProps } = useTableProps<StudentsListItem>(`${url}/api/students`);
 
     const columns: ColumnDescription[] = [
         {

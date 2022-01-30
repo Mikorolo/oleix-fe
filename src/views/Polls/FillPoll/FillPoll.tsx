@@ -4,6 +4,7 @@ import {Button, Col, Container} from "react-bootstrap";
 import {useHistory, useParams} from "react-router-dom";
 import Axios from "axios";
 import TextInput from "../../../components/TextInput/TextInput";
+import {url} from "../../../consts/url";
 
 interface PollModelItem {
     studentId: string,
@@ -18,7 +19,7 @@ const FillPoll = () => {
 
         const handleSubmit = async (values: PollModelItem) => {
             try {
-                await Axios.post<any>("https://localhost:44362/api/questionnaries", values);
+                await Axios.post<any>(`${url}/api/questionnaries`, values);
                 console.log(values)
             }
             catch (e) {

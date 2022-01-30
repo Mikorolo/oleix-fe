@@ -5,6 +5,7 @@ import SideMenu from "../../components/SideMenu/SideMenu";
 import axios from "axios";
 import {SortOrder} from "react-bootstrap-table-next";
 import moment from "moment";
+import {url} from "../../consts/url";
 
 interface AdvertModelItem {
     advertId: string;
@@ -32,7 +33,7 @@ const Home = () => {
         const fetchAdverts = async() => {
             try {
                 const { data: resData } = await axios.get(
-                    'https://localhost:44362/api/adverts',
+                    `${url}/api/adverts`,
                     {
                         params: {
                             page: currentPage,

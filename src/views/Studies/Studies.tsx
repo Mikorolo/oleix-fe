@@ -4,6 +4,7 @@ import {Formik,} from 'formik';
 import {Button, Col, Container, Form, ListGroup} from 'react-bootstrap';
 import SideMenu from "../../components/SideMenu/SideMenu";
 import axios from "axios";
+import {url} from "../../consts/url";
 
 interface MyFormValues {
     course: string;
@@ -31,7 +32,7 @@ const Studies: React.FC = () => {
     useEffect(() => {
         const fetchStudies = async() => {
             try {
-                const res = await axios.get('https://localhost:44362/api/dictionaries/degree-courses', {
+                const res = await axios.get(`${url}/api/dictionaries/degree-courses`, {
                     params: {
                         phrase: coursesPhrase
                     }

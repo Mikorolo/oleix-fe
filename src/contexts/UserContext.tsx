@@ -1,5 +1,6 @@
 import React, { createContext, FC, ReactNode, useContext, useState } from 'react';
 import Axios from "axios";
+import {url} from "../consts/url";
 
 interface UserContextInterface {
     isAuthenticated: boolean;
@@ -21,7 +22,7 @@ const CurrentUser: FC<PropsInterface> = ({ children }) => {
     const onLogOut = async () => {
         try {
             setIsAuthenticated(true)
-            await Axios.post('/api/auth/logout');
+            await Axios.post(`${url}/api/auth/logout`);
             setIsAuthenticated(false)
         } catch (e) {
             console.log(e)

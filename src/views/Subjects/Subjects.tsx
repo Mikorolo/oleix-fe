@@ -14,6 +14,7 @@ import SideMenu from "../../components/SideMenu/SideMenu";
 import {Formik} from "formik";
 import subjectsBackgorund from '../../assets/img/subjectsBackground.png';
 import axios from "axios";
+import {url} from "../../consts/url";
 
 interface SubjectsInterface {
     id: string;
@@ -27,7 +28,7 @@ const Subjects = () => {
     useEffect(() => {
         const fetchSubjects = async() => {
             try {
-                const res = await axios.get('https://localhost:44362/api/dictionaries/subjects', {
+                const res = await axios.get(`${url}/api/dictionaries/subjects`, {
                     params: {
                         phrase: subjectPhrase
                     }

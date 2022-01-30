@@ -6,6 +6,7 @@ import {useHistory} from "react-router-dom";
 import Axios from "axios";
 import TextInput from "../../components/TextInput/TextInput";
 import {useCurrentUser} from "../../contexts/UserContext";
+import {url} from "../../consts/url";
 
 interface LoginModel {
     email: string;
@@ -18,7 +19,7 @@ const Login = () => {
 
     const handleLogin = async (values: LoginModel) => {
         try {
-            const data = await Axios.post<any>("https://localhost:44362/api/auth/login", values, {withCredentials: true});
+            const data = await Axios.post<any>(`${url}/api/auth/login`, values, {withCredentials: true});
             console.log(values)
             if (data.status === 200) {
                 setIsAuthenticated(true);

@@ -2,6 +2,7 @@ import React from "react"
 import {Container, Row} from "react-bootstrap";
 import useTableProps, {sortHandler} from "../../hooks/useTableProps";
 import BootstrapTable, {ColumnDescription} from "react-bootstrap-table-next";
+import {url} from "../../consts/url";
 
 interface WorkersModelItem{
     name: string;
@@ -16,7 +17,7 @@ interface WorkersModel {
 }
 
 const Workers = () => {
-    const { data, tableProps } = useTableProps<WorkersModel>('https://localhost:44362/api/lecturers');
+    const { data, tableProps } = useTableProps<WorkersModel>(`${url}/api/lecturers`);
 
     const columns: ColumnDescription[] = [
         {

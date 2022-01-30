@@ -3,6 +3,7 @@ import {Button, Col, Container, Figure, Image, Row, Stack, Table} from "react-bo
 import profilePicture from "../../assets/img/profilePicture.jpeg";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {url} from "../../consts/url";
 
 interface PollsModelItem {
     lecturerId: string;
@@ -18,7 +19,7 @@ const Polls = () => {
     useEffect(() => {
         const fetchPolls = async() => {
             try {
-                const res = await axios.get('https://localhost:44362/api/lecturers');
+                const res = await axios.get(`${url}/api/lecturers`);
                 setData(res.data.list);
             }
             catch (e) {
