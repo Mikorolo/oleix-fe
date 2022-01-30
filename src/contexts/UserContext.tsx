@@ -1,11 +1,19 @@
-import React, { createContext, FC, ReactNode, useContext, useState } from 'react';
+import React, { createContext, FC, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import Axios from "axios";
 import {url} from "../consts/url";
 
+interface CurrentUserInterface {
+    userId: string,
+    roleId: string
+}
+
 interface UserContextInterface {
-    isAuthenticated: boolean;
-    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
+    currentUser?: CurrentUserInterface;
+    isPending: boolean;
+    setIsPending: React.Dispatch<React.SetStateAction<boolean>>
+    fetchUserData: () => Promise<void>
     onLogOut: () => Promise<void>
+    onClearUser: () => void;
 }
 
 const UserContext = createContext<UserContextInterface | undefined>(undefined);
@@ -17,22 +25,49 @@ interface PropsInterface {
 }
 
 const CurrentUser: FC<PropsInterface> = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [currentUser, setCurrentUser] = useState<CurrentUserInterface>();
+    const [isPending, setIsPending] = useState(false);
+
+    const onClearUser = () => {
+        setCurrentUser(undefined)
+    }
 
     const onLogOut = async () => {
         try {
-            setIsAuthenticated(true)
+            setIsPending(true)
             await Axios.post(`${url}/api/auth/logout`);
-            setIsAuthenticated(false)
+            setCurrentUser(undefined)
+            setIsPending(false)
         } catch (e) {
             console.log(e)
         }
     }
 
+    const fetchUserData = useCallback(async () => {
+        try {
+            setIsPending(true)
+            const { data } = await Axios.get<CurrentUserInterface>(`${url}/api/user`);
+            setCurrentUser(data);
+            setIsPending(false)
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setIsPending(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchUserData().then();
+    }, [fetchUserData]);
+
+
     const contextData = {
-        isAuthenticated,
-        setIsAuthenticated,
+        currentUser,
+        isPending,
+        setIsPending,
+        fetchUserData,
         onLogOut,
+        onClearUser,
     };
 
     return (

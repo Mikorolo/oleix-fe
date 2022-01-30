@@ -2,8 +2,12 @@ import React from 'react';
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import logo from "../../assets/img/logo.png"
+import {useCurrentUser} from "../../contexts/UserContext";
+import useRole from "../../hooks/useRole";
 
 const NavigationBar = () => {
+    const hasRole = useRole();
+    const { currentUser, onLogOut } = useCurrentUser();
     return (
         <div>
             <Navbar expand="lg" variant='dark' className='navbar-style'>
@@ -15,6 +19,7 @@ const NavigationBar = () => {
                             <Nav.Link as={Link} to='/userPanel'><b>Panel użytkownika</b></Nav.Link>
                             <Nav.Link as={Link} to='/catalogue'><b>Katalog</b></Nav.Link>
                             <Nav.Link as={Link} to='/'><b>Strona domowa</b></Nav.Link>
+                            <Nav.Link onClick={onLogOut}><b>Wyloguj</b></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

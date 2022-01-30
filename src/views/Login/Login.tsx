@@ -15,15 +15,16 @@ interface LoginModel {
 
 const Login = () => {
     const history = useHistory();
-    const { setIsAuthenticated } = useCurrentUser();
+    const { setIsPending, fetchUserData } = useCurrentUser();
 
     const handleLogin = async (values: LoginModel) => {
         try {
             const data = await Axios.post<any>(`${url}/api/auth/login`, values, {withCredentials: true});
             console.log(values)
             if (data.status === 200) {
-                setIsAuthenticated(true);
+                setIsPending(true);
                 history.push('/');
+                await fetchUserData()
             }
         }
         catch (e) {
