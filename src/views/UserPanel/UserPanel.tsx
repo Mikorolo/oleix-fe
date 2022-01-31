@@ -7,10 +7,13 @@ import stages from '../../assets/img/zaliczenia_etapow.png';
 import {Col, Container, Figure, Image, Row} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
 import SideMenu from "../../components/SideMenu/SideMenu";
+import useRole from '../../hooks/useRole';
+import { RolesEnum } from '../../enums/RolesEnum';
 
 
 const UserPanel = () => {
     const history = useHistory();
+    const hasRole = useRole();
     const handleRoute = (name:string) => {
         history.push('/' + name);
     }
@@ -18,7 +21,9 @@ const UserPanel = () => {
         <Container className='user-panel-menu d-flex justify-content-center'>
             <Image src={userPanelBg} className='user-panel-bg'/>
             <SideMenu/>
+            
             <Row className='mt-5'>
+                {hasRole(RolesEnum.Student)||hasRole(RolesEnum.Lecturer)?
                 <Col className='mx-5'>
                     <Figure className='slide-up'>
                         <Figure.Image
@@ -31,12 +36,14 @@ const UserPanel = () => {
                         <Figure.Caption className='d-flex justify-content-center text-white m-auto slide-right'>
                             <Col>
                                 <Row>
-                                    <h4 className = "catalogue-caption ms-3" onClick={() => handleRoute('grades')}><b>Oceny końcowe</b></h4>
+                                    <h4 className = "catalogue-caption ms-3" onClick={() => handleRoute('grades')}><b>Oceny</b></h4>
                                 </Row>
                             </Col>
                         </Figure.Caption>
                     </Figure>
                 </Col>
+                :null}
+                
                 <Col className='mx-5'>
                     <Figure className='slide-up'>
                         <Figure.Image
@@ -55,6 +62,8 @@ const UserPanel = () => {
                         </Figure.Caption>
                     </Figure>
                 </Col>
+
+                {hasRole(RolesEnum.Student)?
                 <Col className='mx-5'>
                     <Figure className='slide-up'>
                         <Figure.Image
@@ -73,6 +82,9 @@ const UserPanel = () => {
                         </Figure.Caption>
                     </Figure>
                 </Col>
+                :null}
+
+                {hasRole(RolesEnum.Student)?
                 <Col className='mx-5'>
                     <Figure className='slide-up'>
                         <Figure.Image
@@ -91,6 +103,7 @@ const UserPanel = () => {
                         </Figure.Caption>
                     </Figure>
                 </Col>
+                :null}
             </Row>
         </Container>
     );

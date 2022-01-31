@@ -5,6 +5,7 @@ import logo from "../../assets/img/logo.png"
 import {useCurrentUser} from "../../contexts/UserContext";
 import useRole from "../../hooks/useRole";
 
+
 const NavigationBar = () => {
     const hasRole = useRole();
     const { currentUser, onLogOut } = useCurrentUser();

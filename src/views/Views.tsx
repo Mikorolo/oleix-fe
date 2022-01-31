@@ -14,7 +14,7 @@ import ForgotPassword from "./Login/ForgotPassword";
 import Polls from "./Polls/Polls";
 import Grades from "./Grades/Grades";
 import FillPoll from "./Polls/FillPoll/FillPoll";
-
+import Groups from "./Groups/Groups";
 
 const Views:FC = () => {
     return (
@@ -63,6 +63,9 @@ const Views:FC = () => {
             </Route>
             <Route path="/polls/fillPoll/:lecturerId">
                 <FillPoll/>
+            </Route>
+            <Route path='/Groups'>
+                <Groups/>
             </Route>
         </Switch>
     );
