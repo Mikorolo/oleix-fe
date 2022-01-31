@@ -6,9 +6,23 @@ import axios from "axios";
 import TextInput from "../../components/TextInput/TextInput";
 import {Form, Formik} from 'formik';
 import { useHistory } from "react-router-dom";
+import AsyncSelectInput from "../../components/AsyncSelectInput/AsyncSelectInput";
 
 
 const Groups = () => {
+
+    interface DegreeCoursesModel
+    {
+        list: DegreeCoursesModelItem[],
+        totalCount: number,
+    }
+
+    interface DegreeCoursesModelItem
+    {
+        id:string,
+        name:string,
+    }
+
 
     interface GroupModelItem 
     {
@@ -50,6 +64,22 @@ const Groups = () => {
         fetchGroupsCourses().catch();
     },[])
 
+    const loadOptions = async (phrase: string, link: string, pageLimit? :number) => {
+        try {
+            const { data } = await axios.get<DegreeCoursesModel>(`${url}/api/dictionaries/${link}`, {
+                params:{
+                    phrase,
+                    pageLimit,
+                },
+            });
+            return data?.list.map((item) =>
+                ({ id:item.id, name:[item.name].filter(Boolean).join(', ') }));
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    };
+
     return(
         <Container>
             <Col className='mt-5'>
@@ -58,13 +88,16 @@ const Groups = () => {
                 onSubmit={handleSubmit}
             >
                     <Form noValidate>
-                        <Col className='mb-3 m-auto' sm={6} lg={4}>
-                            <TextInput
-                                name='degreeCourseId'
-                                label='Kurs'
+                        <Col className='mb-3 m-auto w-50' sm={6} lg={4}>
+                            <AsyncSelectInput
+                                labelName='degree-courses'
+                                valueName="degreeCourseId"
+                                label="Kierunek:"
+                                loadOptions={(load) => loadOptions(load, 'degree-courses')}
                                 required
                             />
-                        </Col>
+                         </Col>
+
                         <Col sm={6} lg={4} className='m-auto mt-3'>
                             <TextInput
                                 name='name'
