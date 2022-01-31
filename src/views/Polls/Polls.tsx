@@ -30,28 +30,9 @@ const Polls = () => {
     },[])
     return (
         <Container>
-            <h2 className='mt-4 mb-3'>Ankiety do wypełnienia:</h2>
-            <Row className='mt-5'>
-                <Stack direction="horizontal" gap={5}>
-                    <Figure>
-                        <Figure.Image
-                            width={125}
-                            height={140}
-                            src={profilePicture}
-                        />
-                    </Figure>
-                    <Col>
-                        <Row className='mt-auto mb-auto'>
-                            <h5>Język obcy (angielski) 3 (Ćwiczenia)</h5>
-                            <h6>mgr Dorota Pliżga</h6>
-                        </Row>
-                    </Col>
-                    <Button className='me-auto ms-auto'>Wypełnij ankietę</Button>
-
-                </Stack>
-            </Row>
+            <h2 className='mt-4 mb-3'>Tutaj możesz wypełnić ankiety:</h2>
             <h4>
-                Pozostałe aniekty:
+                Ankiety do wypełnienia:
             </h4>
             <Row className='mt-3'>
                 <Table striped bordered hover>
@@ -66,7 +47,7 @@ const Polls = () => {
                     {data.map((item) => (
                         <tr>
                             <td><Image className='profile-picture' src={profilePicture}/></td>
-                            <td>{item.firstName} <br/> {item.email}</td>
+                            <td>Imię i nazwisko: {item.firstName} {item.surname} <br/> Adres e-mail: {item.email}</td>
                             <td><Button variant='success' className='d-flex m-auto' onClick={() => history.push(`/polls/fillPoll/${item.lecturerId}`)}>Wypełnij ankietę</Button></td>
                         </tr>
                     ))}
@@ -75,6 +56,6 @@ const Polls = () => {
             </Row>
         </Container>
     );
-};
+}
 
 export default Polls;

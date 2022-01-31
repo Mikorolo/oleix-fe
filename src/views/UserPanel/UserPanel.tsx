@@ -50,7 +50,7 @@ const UserPanel = () => {
                             width={100}
                             height={130}
                             src={passes}
-                            onClick={() => handleRoute('passes')}
+                            onClick={() => handleRoute('applications')}
                             className='catalogue-figure user-panel-figures'
                         />
                         <Figure.Caption className='d-flex justify-content-center text-white m-auto slide-right'>

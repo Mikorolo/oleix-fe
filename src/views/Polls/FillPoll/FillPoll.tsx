@@ -5,9 +5,10 @@ import {useHistory, useParams} from "react-router-dom";
 import Axios from "axios";
 import TextInput from "../../../components/TextInput/TextInput";
 import {url} from "../../../consts/url";
+import {useCurrentUser} from "../../../contexts/UserContext";
 
 interface PollModelItem {
-    studentId: string,
+    studentId: string | undefined,
     lecturerId: string,
     note: string,
     rating: number,
@@ -16,11 +17,11 @@ interface PollModelItem {
 const FillPoll = () => {
     const history = useHistory();
     const { lecturerId } : { lecturerId: string } = useParams();
+    const {currentUser} = useCurrentUser();
 
         const handleSubmit = async (values: PollModelItem) => {
             try {
                 await Axios.post<any>(`${url}/api/questionnaries`, values);
-                console.log(values)
             }
             catch (e) {
                 console.error(e);
@@ -28,7 +29,7 @@ const FillPoll = () => {
         }
 
         const initialValues : PollModelItem = {
-            studentId: '2a471112-6dba-11ec-90d6-0242ac120003',
+            studentId: currentUser?.userId,
             lecturerId: lecturerId,
             note: '',
             rating: 0,
@@ -58,7 +59,7 @@ const FillPoll = () => {
                                     required
                                 />
                             </Col>
-                            <Button type="submit" className='d-flex justify-content-center mx-auto mt-3' onClick={() => history.goBack()}>Wyślij</Button>
+                            <Button type="submit" className='d-flex justify-content-center mx-auto mt-3' >Wyślij</Button>
                         </Form>
                 </Formik>
 

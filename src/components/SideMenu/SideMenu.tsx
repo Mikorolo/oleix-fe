@@ -31,7 +31,7 @@ const SideMenu = () => {
                         <ListGroup.Item onClick={() => handleRoute('catalogue')}>Katalog</ListGroup.Item>
                         {hasRole(RolesEnum.Student)||hasRole(RolesEnum.Lecturer)?<ListGroup.Item onClick={() => handleRoute('grades')}>Oceny</ListGroup.Item>:null}
                         {hasRole(RolesEnum.Student)?<ListGroup.Item onClick={() => handleRoute('polls')}>Ankiety</ListGroup.Item>:null}
-                        <ListGroup.Item onClick={() => handleRoute('passes')}>Podania</ListGroup.Item>
+                        <ListGroup.Item onClick={() => handleRoute('applications')}>Podania</ListGroup.Item>
                         {hasRole(RolesEnum.Student)?<ListGroup.Item onClick={() => handleRoute('Stages')}>Zaliczenia</ListGroup.Item>:null}
                         {hasRole(RolesEnum.DeaneryWorker)?<ListGroup.Item onClick={() => handleRoute('Groups')}>Dodaj grupę</ListGroup.Item>:null}
                     </Offcanvas.Body>

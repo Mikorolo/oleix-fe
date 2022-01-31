@@ -49,7 +49,7 @@ const Studies: React.FC = () => {
     useEffect(() => {
         const fetchStudies = async() => {
             try {
-                const res = await axios.get('https://localhost:44362/api/dictionaries/departments', {
+                const res = await axios.get(`${url}/api/dictionaries/departments`, {
                     params: {
                         phrase: departmentPhrase
                     }
