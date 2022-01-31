@@ -2,13 +2,13 @@ import React, {FC} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from "./Home/Home";
 import StudentsList from "./StudentsList/StudentsList";
-import Register from "./Register/Register";
+import SignUp from "./Register/SignUp";
 import Catalogue from "./Catalogue/Catalogue";
 import Workers from './Workers/Workers';
 import Subjects from './Subjects/Subjects';
 import Studies from './Studies/Studies';
 import UserPanel from "./UserPanel/UserPanel";
-import Passes from "./Passes/Passes";
+import Applications from "./Applications/Applications";
 import Stages from "./Stages/Stages";
 import ForgotPassword from "./Login/ForgotPassword";
 import Polls from "./Polls/Polls";
@@ -31,9 +31,6 @@ const Views:FC = () => {
             <Route path="/new">
                 <StudentsList/>
             </Route>
-            <Route path="/register">
-                <Register/>
-            </Route>
             <Route path="/workers">
                 <Workers/>
             </Route>
@@ -46,14 +43,17 @@ const Views:FC = () => {
             <Route path='/userPanel'>
                 <UserPanel/>
             </Route>
-            <Route path='/passes'>
-                <Passes/>
+            <Route path='/applications'>
+                <Applications/>
             </Route>
             <Route path='/stages'>
                 <Stages/>
             </Route>
             <Route path='/forgotPassword'>
                 <ForgotPassword/>
+            </Route>
+            <Route path='/register'>
+                <SignUp />
             </Route>
             <Route exact path='/polls'>
                 <Polls/>
