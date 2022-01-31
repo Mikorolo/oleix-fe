@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom";
 import Axios from "axios";
 import TextInput from "../../components/TextInput/TextInput";
 import {useCurrentUser} from "../../contexts/UserContext";
-import {url} from "../../consts/url";
+import { url } from "../../consts/url";
 
 interface LoginModel {
     email: string;
@@ -63,9 +63,9 @@ const Login = () => {
                             <Col className='justify-content-center d-flex'>
                                 <Button type="submit" variant='warning' className='mt-3 fw-bold text-black'>Zaloguj</Button>
                             </Col>
-                            {/*<Col className='justify-content-center d-flex'>*/}
-                            {/*    <Button variant='link' className='forgot-password-text' onClick={() => history.push('/forgotPassword')}>Nie pamiętam hasła</Button>*/}
-                            {/*</Col>*/}
+                            <Col className='justify-content-center d-flex'>
+                                <Button variant='link' className='forgot-password-text' onClick={() => history.push('/set-password')}>Zarejestruj</Button>
+                            </Col>
                         </Form>
                     </Formik>
                 </Row>

@@ -49,7 +49,7 @@ const UserPanel = () => {
                         <Figure.Caption className='d-flex justify-content-center text-white m-auto slide-right'>
                             <Col>
                                 <Row>
-                                    <h4 className = "catalogue-caption ms-3" onClick={() => handleRoute('passes')}><b>Podania</b></h4>
+                                    <h4 className = "catalogue-caption ms-3" onClick={() => handleRoute('applications')}><b>Podania</b></h4>
                                 </Row>
                             </Col>
                         </Figure.Caption>
