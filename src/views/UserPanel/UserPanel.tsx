@@ -8,7 +8,7 @@ import {Col, Container, Figure, Image, Row} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import useRole from '../../hooks/useRole';
-import { RolesEnum } from '../../enums/RolesEnum';
+import {RolesEnum} from '../../enums/RolesEnum';
 
 
 const UserPanel = () => {
@@ -50,13 +50,23 @@ const UserPanel = () => {
                             width={100}
                             height={130}
                             src={passes}
-                            onClick={() => handleRoute('applications')}
+                            onClick={() => {hasRole(RolesEnum.DeaneryWorker) ?
+                                handleRoute('manageApplications') :
+                                handleRoute('applications')}}
                             className='catalogue-figure user-panel-figures'
                         />
                         <Figure.Caption className='d-flex justify-content-center text-white m-auto slide-right'>
                             <Col>
                                 <Row>
-                                    <h4 className = "catalogue-caption ms-3" onClick={() => handleRoute('applications')}><b>Podania</b></h4>
+                                    <h4
+                                        className = "catalogue-caption ms-3"
+                                        onClick={() => {hasRole(RolesEnum.DeaneryWorker) ?
+                                            handleRoute('manageApplications') :
+                                            handleRoute('applications')}}>
+                                        <b>
+                                            Podania
+                                        </b>
+                                    </h4>
                                 </Row>
                             </Col>
                         </Figure.Caption>

@@ -51,8 +51,6 @@ const Subjects = () => {
                 <Formik
                     initialValues={{
                         subjectPhrase: '',
-                        coursePhrase: '',
-                        groupPhrase: '',
                     }}
                     onSubmit={(values, {setSubmitting}) => {
                         setSubjectPhrase(values.subjectPhrase);

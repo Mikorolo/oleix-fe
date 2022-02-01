@@ -15,6 +15,8 @@ import Polls from "./Polls/Polls";
 import Grades from "./Grades/Grades";
 import FillPoll from "./Polls/FillPoll/FillPoll";
 import Groups from "./Groups/Groups";
+import ManageAdverts from "./Home/AdvertsAdminPanel/ManageAdverts";
+import ManageApplications from "./Applications/ApplicationsAdminPanel/ManageApplications";
 
 const Views:FC = () => {
     return (
@@ -66,6 +68,12 @@ const Views:FC = () => {
             </Route>
             <Route path='/Groups'>
                 <Groups/>
+            </Route>
+            <Route path='/advertsAdminPanel'>
+                <ManageAdverts/>
+            </Route>
+            <Route path='/manageApplications'>
+                <ManageApplications/>
             </Route>
         </Switch>
     );

@@ -1,7 +1,7 @@
 import {Form, Formik} from 'formik';
 import React from 'react';
 import {Button, Col, Container} from "react-bootstrap";
-import {useHistory, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Axios from "axios";
 import TextInput from "../../../components/TextInput/TextInput";
 import {url} from "../../../consts/url";
@@ -15,7 +15,6 @@ interface PollModelItem {
 }
 
 const FillPoll = () => {
-    const history = useHistory();
     const { lecturerId } : { lecturerId: string } = useParams();
     const {currentUser} = useCurrentUser();
 
@@ -62,7 +61,6 @@ const FillPoll = () => {
                             <Button type="submit" className='d-flex justify-content-center mx-auto mt-3' >Wyślij</Button>
                         </Form>
                 </Formik>
-
             </Col>
         </Container>
     );

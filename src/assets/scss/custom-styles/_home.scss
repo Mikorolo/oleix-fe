@@ -44,7 +44,6 @@
   font-size: 3.5rem;
   color: whitesmoke;
   text-shadow: 3px 2px gray;
-  display: block;
   overflow: hidden !important;
 }
 
@@ -58,8 +57,7 @@
 .slide-right-home {
   width: 100%;
   overflow: hidden;
-  margin-left: 400px;
-  max-width: 500px;
+  margin-left: 300px;
   min-height: 300px;
   max-height: 300px;
 }

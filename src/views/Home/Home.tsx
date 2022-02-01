@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Container, Image, ListGroup, Offcanvas, Pagination} from "react-bootstrap";
+import {Button, Card, Col, Container, Image, Pagination} from "react-bootstrap";
 import politechnika from "../../assets/img/politechnika.jpg"
 import SideMenu from "../../components/SideMenu/SideMenu";
 import axios from "axios";
 import {SortOrder} from "react-bootstrap-table-next";
 import moment from "moment";
 import {url} from "../../consts/url";
+import useRole from "../../hooks/useRole";
+import {useHistory} from "react-router-dom";
+import {RolesEnum} from "../../enums/RolesEnum";
 
 interface AdvertModelItem {
     advertId: string;
     title: string;
     note: string;
     date: string;
-}
-
-interface AdvertModel {
-    list: AdvertModelItem[];
-    totalCount: number;
 }
 
 const Home = () => {
@@ -28,6 +26,9 @@ const Home = () => {
 
     const [sortBy, setSortBy] = useState<string>();
     const [sortDir, setSortDir] = useState<SortOrder>('asc');
+
+    const hasRole = useRole();
+    const history = useHistory();
 
     useEffect(() => {
         const fetchAdverts = async() => {
@@ -81,7 +82,7 @@ const Home = () => {
             <SideMenu/>
             <Image src={politechnika} className='home-image'/>
                 <div className='slide-right-home'>
-                    <h2 className='mt-3 mb-3 d-flex justify-content-center home-header'>Witaj w systemie USOS Politechniki Świętokrzyskiej</h2>
+                    <h2 className='mt-3 mb-3 d-flex justify-content-center home-header w-100'>Witaj w systemie USOS Politechniki Świętokrzyskiej</h2>
                 </div>
                     {data.map((key) => {
                         data.slice(indexOfFirstPost, indexOfLastPost)
@@ -104,6 +105,12 @@ const Home = () => {
                         {paginationBasic}
                     <Pagination.Next onClick={() => currentPage < numOfPages ? setCurrentPage(currentPage + 1) : setCurrentPage(currentPage)} />
                 </Pagination>
+            {hasRole(RolesEnum.Rector) || hasRole(RolesEnum.DeaneryWorker) ?
+                <Col className='justify-content-center d-flex'>
+                    <Button className='rounded-2' variant='danger' onClick={() => history.push('/advertsAdminPanel')}>Panel administracyjny ogłoszeń</Button>
+                </Col>
+                : null }
+
         </Container>
     );
 };

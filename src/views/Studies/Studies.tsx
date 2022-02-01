@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {Formik,} from 'formik';
-import {Button, Col, Container, Form, ListGroup} from 'react-bootstrap';
+import {Col, Container, Form, ListGroup} from 'react-bootstrap';
 import SideMenu from "../../components/SideMenu/SideMenu";
 import axios from "axios";
 import {url} from "../../consts/url";
@@ -82,7 +82,6 @@ const Studies: React.FC = () => {
                             <Form.Control
                                 onChange={(e) => { setDepartmentPhrase(e.target.value);}}
                                 type="text"
-                                id='department'
                                 name='department'
                                 placeholder="Tutaj możesz podać nazwę wydziału"
                                 onFocus={() => { setActive('departments')}}
@@ -97,7 +96,6 @@ const Studies: React.FC = () => {
                             <Form.Control
                                 onChange={(e) => { setCoursesPhrase(e.target.value); }}
                                 type="text"
-                                id='course'
                                 name='course'
                                 placeholder="Wpisz kod lub nazwę szukanego kierunku"
                                 onFocus={() => { setActive('courses')}}
@@ -108,7 +106,6 @@ const Studies: React.FC = () => {
                             </Form.Text>
                         </Form.Group>
                     </Form>
-                    <Button type='submit' className='mb-3'>Szukaj</Button>
                     {departmentPhrase.length || coursesPhrase.length > 2 ? active === 'courses' ? courses.map((item) => (
                             <ListGroup>
                                 <ListGroup.Item action>

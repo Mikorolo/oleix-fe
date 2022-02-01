@@ -37,7 +37,7 @@ const Applications = () => {
             await Axios.post<any>(`${url}/api/applications`, values, {
                 params: {
                     studentId: currentUser?.userId,
-                    recipientId: '676ef0eb-ca77-4b9f-8913-ef4c5894f499'
+                    recipientId: values.recipientId
                 }
             });
             console.log(values)
