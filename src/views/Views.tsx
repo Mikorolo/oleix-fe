@@ -17,6 +17,9 @@ import FillPoll from "./Polls/FillPoll/FillPoll";
 import Groups from "./Groups/Groups";
 import ManageAdverts from "./Home/AdvertsAdminPanel/ManageAdverts";
 import ManageApplications from "./Applications/ApplicationsAdminPanel/ManageApplications";
+import DeaneryWorkerCreate from './DeaneryWorker/Create/DeaneryWorkerCreate';
+import DeaneryWorkerPut from './DeaneryWorker/Change/DeaneryWorkerPut';
+import DeaneryWorkerDelete from './DeaneryWorker/Delete/DeaneryWorkerDelete';
 
 const Views:FC = () => {
     return (
@@ -74,6 +77,15 @@ const Views:FC = () => {
             </Route>
             <Route path='/manageApplications'>
                 <ManageApplications/>
+            </Route>
+            <Route path='/DeaneryWorkerCreate'>
+                <DeaneryWorkerCreate/>
+            </Route>
+            <Route path='/DeaneryWorkerPut'>
+                <DeaneryWorkerPut/>
+            </Route>
+            <Route path='/DeaneryWorkerDelete'>
+                <DeaneryWorkerDelete/>
             </Route>
         </Switch>
     );
